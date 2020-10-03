@@ -1,0 +1,5 @@
+sphinx
+sphinx_fontawesome
+sphinxcontrib-fulltoc
+nbsphinx
+sphinx_rtd_theme
