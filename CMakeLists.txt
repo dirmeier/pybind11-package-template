@@ -15,7 +15,7 @@ set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fno-omit-frame-pointer -fp
 include(GNUInstallDirs)
 include(FeatureSummary)
 include(GoogleTest)
-find_package(GTest REQUIRED)
+find_package(GTest)
 
 include_directories(example/include)
 
@@ -48,22 +48,24 @@ target_link_libraries(
         example_lib
 )
 
-add_executable(
-    test_example
-        tests/test.cpp
-)
+IF (GTest_FOUND) 
+    add_executable(
+        test_example
+            tests/test.cpp
+    )
 
-target_include_directories(
-    test_example PRIVATE
-        pthread
-)
+    target_include_directories(
+        test_example PRIVATE
+            pthread
+    )
 
-target_link_libraries(
-    test_example PRIVATE
-        example_lib
-        ${GTEST_BOTH_LIBRARIES}
-        pthread
+    target_link_libraries(
+        test_example PRIVATE
+            example_lib
+            ${GTEST_BOTH_LIBRARIES}
+            pthread
 )
+ENDIF()
 
 enable_testing()
 add_test(NAME main_test COMMAND test_example)

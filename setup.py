@@ -24,7 +24,9 @@ dev_reqs = [
     "pytest",
     "pytest-cov",
     "pytest-black",
-    "sphinx"
+    "sphinx",
+    "cpplint",
+    "clang-format"
 ]
 
 
